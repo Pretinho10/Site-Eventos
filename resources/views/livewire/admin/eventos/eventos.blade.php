@@ -32,6 +32,7 @@
                 <th class="px-4 py-3">Data Termino</th>
                 <th class="px-4 py-3">Hora Termino</th>
                 <th class="px-4 py-3">Valor</th>
+                <th class="px-4 py-3"></th>
             </tr>
         </thead>
         <tbody>
@@ -44,11 +45,14 @@
                     <td class="px-4 py-3">{{ $evento->dt_termino }}</td>
                     <td class="px-4 py-3">{{ $evento->hora_termino }}</td>
                     <td class="px-4 py-3">{{ $evento->valor }}</td>
-
+                    <td class="px-4 py-3">
+                        {{-- Botão de delete --}}
+                        <x-admin.button-delete wire:click="$emit('confirmarDeletar', '{{ $evento -> id }}')"/>
+                    </td>
                 </tr>
             @empty
                 <tr class="bg-purple-700 border-b border-purple-50 hover:bg-purple-600">
-                    <td colspan="7" class="px-4 py-3"> Não existem eventos. </td>
+                    <td colspan="8" class="px-4 py-3"> Não existem eventos. </td>
                 </tr>
             @endforelse
         </tbody>

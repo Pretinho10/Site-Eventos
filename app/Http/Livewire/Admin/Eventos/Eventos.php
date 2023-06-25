@@ -16,6 +16,8 @@ class Eventos extends Component
     //Atributo que vai armazenar o que a pessoa digitar no campo de texto da pesquisa
     public $pesquisa = '';
 
+    protected $listeners = ['deletar'];
+
     public function filtrarDados()
     {
         if (empty($this->pesquisa)) {
@@ -34,6 +36,14 @@ class Eventos extends Component
                 ->get(); //no fim da consulta sempre precisa do get()
             //dd(DB::getQueryLog());
         }
+    }
+
+    public function deletar($id)
+    {
+        Event::destroy($id);
+
+        // Vai ser com evento - esta emitindo o evento
+        $this->emit('mostrarToast', 'Evento deletado com sucesso!');
     }
 
 

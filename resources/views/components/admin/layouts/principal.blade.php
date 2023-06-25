@@ -33,26 +33,20 @@
 
     {{-- Script do Toastfy --}}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    {{-- Tem que aparecer depois do script do toast --}}
-    {{-- Quando uma página que usa esse layout for exibida,
-    vai verificar se tem algum toast na sessao e exibir --}}
-    @if (session()->has('toast'))
-        <script>
-            Toastify({
-                text: "{{ session('toast') }}",
-                duration: 3000, //ms
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
-                stopOnFocus: true, // Prevents dismissing of toast on hover
-                style: {
-                    background: "#8A2BE2",
-                    borderTop: '4px solid #4B0082',
-                    color: "#fff"
-                },
-                onClick: function() {} // Callback after click
-            }).showToast();
-        </script>
-    @endif
+    {{-- Para carregar o componente do toast em todas as páginas que usarem esse layout --}}
+    <livewire:toast />
+
+    <script>
+        // Colocar o JS para escutar um evento emitido por um componente Livewire
+        Livewire.on('confirmarDeletar', (id) => {
+            if (confirm('Deseja mesmo deletar ?')) {
+                // Tenho que chamar o metodo deletar do componente
+                // mas nesse caso não pode chamar direto
+                // vou ter que lançar um evento
+                Livewire.emit('deletar', id);
+            }
+        });
+    </script>
 </body>
 
 </html>
