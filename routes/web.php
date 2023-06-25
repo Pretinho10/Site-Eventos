@@ -23,6 +23,7 @@ Route::get('/', function () {
 //Rota para o componente full page do Livewire
 Route::get('/eventos', Eventos::class);
 Route::get('/eventos/criar', EventosForm::class);
+Route::get('/eventos/{evento}/editar', EventosForm::class);
 
 
 

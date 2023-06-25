@@ -31,9 +31,10 @@ class EventosForm extends Component
     // ];
 
 
-    public function mount()
+    public function mount(Event $evento)
     {
-        $this->evento = new Event();
+
+        $this->evento = $evento;
     }
 
     // O metodo updated é chamdo automaticamente pelo livewire sempre que uma

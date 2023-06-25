@@ -6,7 +6,7 @@
     <div class="flex justify-end items-center">
 
 
-        <x-loading wire:loading />
+        <x-loading wire:loading wire:target="pesquisa" />
 
         {{-- Input de Pesquisa --}}
         <input
@@ -46,8 +46,12 @@
                     <td class="px-4 py-3">{{ $evento->hora_termino }}</td>
                     <td class="px-4 py-3">{{ $evento->valor }}</td>
                     <td class="px-4 py-3">
+                        {{-- Botão de editar --}}
+                        <x-admin.button-edit href="/eventos/{{ $evento->id }}/editar" />
+                    </td>
+                    <td class="px-4 py-3">
                         {{-- Botão de delete --}}
-                        <x-admin.button-delete wire:click="$emit('confirmarDeletar', '{{ $evento -> id }}')"/>
+                        <x-admin.button-delete wire:click="$emit('confirmarDeletar', '{{ $evento->id }}')" />
                     </td>
                 </tr>
             @empty
